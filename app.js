@@ -208,13 +208,22 @@ editForm.addEventListener('submit', e => {
 // Remove texture references since texture field was removed from UI
 addForm.addEventListener('submit', e => {
   e.preventDefault();
+  const type = document.getElementById('addType').value;
+  let photoUrl = '';
+  if (type.toLowerCase() === 'top') {
+    photoUrl = 'https://cdn-icons-png.flaticon.com/512/892/892458.png'; // example top icon
+  } else if (type.toLowerCase() === 'pantalones' || type.toLowerCase() === 'pants') {
+    photoUrl = 'https://cdn-icons-png.flaticon.com/512/892/892458.png'; // example pants icon (replace with actual)
+  } else {
+    photoUrl = ''; // default no photo
+  }
   const newItem = {
     id: generateId(),
     name: document.getElementById('addName').value,
-    type: document.getElementById('addType').value,
+    type: type,
     season: document.getElementById('addSeason').value,
     color: document.getElementById('addColor').value,
-    photo: '' // No photo for manual add
+    photo: photoUrl
   };
   closetItems.push(newItem);
   saveCloset();
